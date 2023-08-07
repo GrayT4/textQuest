@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d %-5p %c: %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="rollingFile"
+                     fileName="logs/textQuest.log"
+                     filePattern="logs/textQuest.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                    <Pattern>%d %-5p %c: %m%n</Pattern>
+            </PatternLayout>
+            <TimeBasedTriggeringPolicy />
+            <DefaultRolloverStrategy>
+                <Delete basePath="logs" maxDepth="2">
+                    <IfFileName glob="textQuest.*.log"/>
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="ALL">
+            <AppenderRef ref="rollingFile" />
+        </Root>
+    </Loggers>
+
+</Configuration>
